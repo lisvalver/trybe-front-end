@@ -9,14 +9,17 @@ class InputsList extends React.Component {
   }
 
   render() {
+    const { add } = this.props;
+    const { textValue } = this.state;
+
     return (
       <div>
         <input
           type="text"
           placeholder="Digite a tarefa"
-          onChange={event => this.setState({ textValue: event.target.value })}
+          onChange={ (event) => this.setState({ textValue: event.target.value })}
         />
-        <button onClick={() => this.props.add(this.state.textValue)}>
+        <button type="button" onClick={() => add(textValue) }>
           Adicionar tarefa
         </button>
       </div>
@@ -25,6 +28,7 @@ class InputsList extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  add: e => dispatch(addAssignment(e))});
+  add: (value) => dispatch(addAssignment(value))
+});
 
 export default connect(null, mapDispatchToProps)(InputsList);
